@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Eventos Valencia</string>
+    <string name="campUsuari">Usuario</string>
+    <string name="campContrasenya">Contraseña</string>
+    <string name="campNom">Nombre</string>
+    <string name="campCognoms">Apellidos</string>
+    <string name="campEdad">Edad</string>
+    <string name="campEmail">E-mail</string>
+    <string name="botonEntrar">Entrar</string>
+    <string name="botonRegistrar">Registrar</string>
+    <string name="loading">Cargando...</string>
+    <string name="emptyFileds">Los campos no pueden quedar vacíos</string>
+    <string name="passwordIncorrect">La contraseña no es correcta</string>
+    <string name="userNotExist">El usuario no existe</string>
+    <string name="userNotRegistre">No hay usuarios registrados</string>
+    <string name="connection">No hay conexión de red</string>
+    <string name="successRegistre">¡Ya estas registrado!</string>
+    <string name="notRegistre">No se ha registrado</string>
+    <string name="titleEsdev">PRÓXIMOS EVENTOS</string>
+    <string name="titleLlocs">LUGARES DE INTERÉS</string>
+    <string name="titleInteresa">TE INTERESA</string>
+    <string name="titleCompte">MI CUENTA</string>
+    <string name="changePass">Cambiar contraseña</string>
+    <string name="save">Guardar</string>
+</resources>

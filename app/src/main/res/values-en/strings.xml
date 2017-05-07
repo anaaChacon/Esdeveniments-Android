@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Events Valencia</string>
+    <string name="campUsuari">User</string>
+    <string name="campContrasenya">Password</string>
+    <string name="campNom">Name</string>
+    <string name="campCognoms">Surnames</string>
+    <string name="campEdad">Years</string>
+    <string name="campEmail">E-mail</string>
+    <string name="botonEntrar">Get in</string>
+    <string name="botonRegistrar">Register</string>
+    <string name="loading">Loading...</string>
+    <string name="emptyFileds">Fields can not be empty</string>
+    <string name="passwordIncorrect">Password is not correct</string>
+    <string name="userNotExist">Username does not exist</string>
+    <string name="userNotRegistre">No registered users</string>
+    <string name="connection">No network connection</string>
+    <string name="successRegistre">¡Already is registered!</string>
+    <string name="notRegistre">Not registered yet</string>
+    <string name="titleEsdev">UPCOMING EVENTS</string>
+    <string name="titleLlocs">PLACES OF INTEREST</string>
+    <string name="titleInteresa">YOU ARE INTERESTED</string>
+    <string name="titleCompte">MY ACCOUNT</string>
+    <string name="changePass">Change Password</string>
+    <string name="save">Save</string>
+</resources>

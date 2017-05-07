@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.anabel.esdevenimentsvalencia.activities.RegistreActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/background_activity"
+        android:alpha="0.7"
+        android:scaleType="fitXY" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteY="8dp"
+            tools:layout_editor_absoluteX="8dp">
+
+            <ImageView
+                android:layout_width="170dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="@dimen/top_image"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/logo_android"/>
+
+            <EditText
+                android:id="@+id/campoNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/universal"
+                android:layout_marginRight="@dimen/universal"
+                android:layout_marginTop="@dimen/topEditText"
+                android:gravity="center"
+                android:hint="@string/campNom"
+                android:textColor="@color/colorHintWhite"
+                android:textColorHint="@android:color/background_dark"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/campoApellidos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/universal"
+                android:layout_marginRight="@dimen/universal"
+                android:layout_marginTop="@dimen/camps"
+                android:gravity="center"
+                android:hint="@string/campCognoms"
+                android:textColor="@color/colorHintWhite"
+                android:textColorHint="@android:color/background_dark"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/campoEdad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/universal"
+                android:layout_marginRight="@dimen/universal"
+                android:layout_marginTop="@dimen/camps"
+                android:gravity="center"
+                android:hint="@string/campEdad"
+                android:textColor="@color/colorHintWhite"
+                android:textColorHint="@android:color/background_dark"
+                android:inputType="phone"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/campoEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/universal"
+                android:layout_marginRight="@dimen/universal"
+                android:layout_marginTop="@dimen/camps"
+                android:gravity="center"
+                android:hint="@string/campEmail"
+                android:textColor="@color/colorHintWhite"
+                android:textColorHint="@android:color/background_dark"
+                android:inputType="textEmailAddress"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/campoUsuari"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/universal"
+                android:layout_marginRight="@dimen/universal"
+                android:layout_marginTop="@dimen/camps"
+                android:gravity="center"
+                android:hint="@string/campUsuari"
+                android:textColor="@color/colorHintWhite"
+                android:textColorHint="@android:color/background_dark"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/campoContrasenya"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/universal"
+                android:layout_marginRight="@dimen/universal"
+                android:layout_marginTop="@dimen/camps"
+                android:gravity="center"
+                android:hint="@string/campContrasenya"
+                android:textColor="@color/colorHintWhite"
+                android:textColorHint="@android:color/background_dark"
+                android:inputType="textPassword"
+                android:textStyle="bold" />
+
+
+                <Button
+                    android:id="@+id/botonRegistro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/botonRegistrar"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/universal"
+                    android:layout_marginBottom="@dimen/universal"
+                    android:background="@color/colorNotification"
+                    android:textColor="@color/colorHintWhite"
+                    android:textStyle="bold"/>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

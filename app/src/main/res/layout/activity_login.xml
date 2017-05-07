@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.anabel.esdevenimentsvalencia.activities.LoginActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.7"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/background_activity" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="170dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="@dimen/top_image"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/logo_android"/>
+
+        <EditText
+            android:id="@+id/campUsuari"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/universal"
+            android:layout_marginRight="@dimen/universal"
+            android:layout_marginTop="@dimen/topEditText"
+            android:gravity="center"
+            android:hint="@string/campUsuari"
+            android:textColor="@color/colorHintWhite"
+            android:textColorHint="?android:attr/panelColorBackground"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/campContrasenya"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/universal"
+            android:layout_marginRight="@dimen/universal"
+            android:layout_marginTop="@dimen/universal"
+            android:gravity="center"
+            android:hint="@string/campContrasenya"
+            android:textColor="@color/colorHintWhite"
+            android:textColorHint="@android:color/background_dark"
+            android:inputType="textPassword"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/topEditText">
+
+            <Button
+                android:id="@+id/botonEntrar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:background="@color/colorNotification"
+                android:text="@string/botonEntrar"
+                android:textColor="@color/colorHintWhite"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/botonRegistrar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="@string/botonRegistrar"
+                android:layout_marginLeft="@dimen/layout_image"
+                android:background="@color/colorNotification"
+                android:textColor="@color/colorHintWhite"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

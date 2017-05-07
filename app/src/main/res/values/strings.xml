@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Esdeveniments València</string>
+    <string name="campUsuari">Usuari</string>
+    <string name="campContrasenya">Contrasenya</string>
+    <string name="campNom">Nom</string>
+    <string name="campCognoms">Cognoms</string>
+    <string name="campEdad">Edat</string>
+    <string name="campEmail">Correu electrònic</string>
+    <string name="botonEntrar">Entrada</string>
+    <string name="botonRegistrar">Registrar</string>
+    <string name="loading">Carregant...</string>
+    <string name="emptyFileds">Els camps no poden quedar buits</string>
+    <string name="passwordIncorrect">La contrasenya no és correcta</string>
+    <string name="userNotExist">L\'usuari no existeix</string>
+    <string name="userNotRegistre">No hi ha usuaris registrats</string>
+    <string name="connection">No hi ha connexió de xarxa</string>
+    <string name="successRegistre">Ja estàs registrat!</string>
+    <string name="notRegistre">No s\'ha registrat</string>
+    <string name="titleEsdev">PRÓXIMS ESDEVEN.</string>
+    <string name="titleLlocs">LLOCS D\'INTERÉS</string>
+    <string name="titleInteresa">T\'INTERESA</string>
+    <string name="titleCompte">EL MEU COMPTE</string>
+    <string name="changePass">Canviar contrasenya</string>
+    <string name="save">Desar</string>
+</resources>
