@@ -7,17 +7,18 @@ package com.example.anabel.esdevenimentsvalencia.models;
 public class Usuarios {
 
     private String nombre, apellidos, email, username, password;
-    private int edad;
+    private int edad, id_usuario;
 
     public Usuarios(){}
 
-    public Usuarios(String nombre, String apellidos, String email, String username, String password, int edad) {
+    public Usuarios(String nombre, String apellidos, String email, String username, String password, int edad, int id_usuario) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.email = email;
         this.username = username;
         this.password = password;
         this.edad = edad;
+        this.id_usuario = id_usuario;
     }
 
     public String getNombre() {
@@ -66,5 +67,13 @@ public class Usuarios {
 
     public void setEdad(int edad) {
         this.edad = edad;
+    }
+
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
     }
 }

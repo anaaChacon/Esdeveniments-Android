@@ -8,14 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.anabel.esdevenimentsvalencia.R;
+import com.example.anabel.esdevenimentsvalencia.global.Constants;
 
 public class MainActivity extends AppCompatActivity implements ImageView.OnClickListener{
-
-    public static final String TITLE = "title";
-    public static final String CODE = "code";
-    public static final String CODE_LLOC = "code_lloc";
-    public static final String CODE_INTERESA = "code_interesa";
-    public static final String CODE_COMPTE = "code_compte";
 
     ImageView calendario, llocsInteres, interesa, compte;
     TextView titleEvents, titleInteres, titleInteresa, titleCompte;
@@ -55,26 +50,26 @@ public class MainActivity extends AppCompatActivity implements ImageView.OnClick
 
         switch(view.getId()){
             case R.id.imageCalendar:
-                bundle.putString(TITLE, titleEvents.getText().toString());
-                bundle.putInt(CODE, 0);
+                bundle.putString(Constants.TITLE, titleEvents.getText().toString());
+                bundle.putInt(Constants.CODE, 0);
                 i.putExtras(bundle);
                 startActivityForResult(i, MainActivity.RESULT_OK);
                 break;
             case R.id.imageLlocs:
-                bundle.putString(TITLE, titleInteres.getText().toString());
-                bundle.putInt(CODE, 1);
+                bundle.putString(Constants.TITLE, titleInteres.getText().toString());
+                bundle.putInt(Constants.CODE, 1);
                 i.putExtras(bundle);
                 startActivityForResult(i, MainActivity.RESULT_OK);
                 break;
             case R.id.imageInteresa:
-                bundle.putString(TITLE, titleInteresa.getText().toString());
-                bundle.putInt(CODE, 2);
+                bundle.putString(Constants.TITLE, titleInteresa.getText().toString());
+                bundle.putInt(Constants.CODE, 2);
                 i.putExtras(bundle);
                 startActivityForResult(i, MainActivity.RESULT_OK);
                 break;
             case R.id.imageCompte:
-                bundle.putString(TITLE, titleCompte.getText().toString());
-                bundle.putInt(CODE, 3);
+                bundle.putString(Constants.TITLE, titleCompte.getText().toString());
+                bundle.putInt(Constants.CODE, 3);
                 i.putExtras(bundle);
                 startActivityForResult(i, MainActivity.RESULT_OK);
                 break;

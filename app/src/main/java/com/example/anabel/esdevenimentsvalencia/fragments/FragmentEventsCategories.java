@@ -1,6 +1,7 @@
 package com.example.anabel.esdevenimentsvalencia.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -17,7 +18,9 @@ import android.widget.Toast;
 import com.example.anabel.esdevenimentsvalencia.R;
 import com.example.anabel.esdevenimentsvalencia.Servidor.TareaRest;
 import com.example.anabel.esdevenimentsvalencia.Servidor.WebService;
+import com.example.anabel.esdevenimentsvalencia.activities.ActivityListEvents;
 import com.example.anabel.esdevenimentsvalencia.adapters.AdapterCategoria;
+import com.example.anabel.esdevenimentsvalencia.global.Constants;
 import com.example.anabel.esdevenimentsvalencia.models.Categorias;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +30,7 @@ import es.dmoral.toasty.Toasty;
  * Created by Anabel on 07/05/2017.
  */
 
-public class FragmentEventsCategories extends Fragment implements AdapterView.OnItemClickListener, TareaRest.TareaRestListener{
+public class FragmentEventsCategories extends Fragment implements TareaRest.TareaRestListener, AdapterCategoria.Callback{
 
     public static List<Categorias> listaCategorias;
     private AdapterCategoria adapterCategorias;
@@ -71,11 +74,6 @@ public class FragmentEventsCategories extends Fragment implements AdapterView.On
         return view;
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-    }
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onTareaRestFinalizada(int codigoOperacion, int codigoRespuestaHttp, String respuestaJson) {
@@ -89,12 +87,23 @@ public class FragmentEventsCategories extends Fragment implements AdapterView.On
 
                     if (listaCategorias != null && adapterCategorias == null) {
 
-                        adapterCategorias = new AdapterCategoria(getContext(), (ArrayList) listaCategorias);
+                        adapterCategorias = new AdapterCategoria(this, getActivity(), (ArrayList) listaCategorias);
                         gridCategories.setAdapter(adapterCategorias);
 
                     }
                 }
             }
         }
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
+        Intent intent = new Intent(getActivity(), ActivityListEvents.class);
+        Bundle bundle = new Bundle();
+        bundle.putString(Constants.TITLE_ACTIVITY_LIST, listaCategorias.get(position).getNombre());
+        bundle.putInt(Constants.ITEM_MUSIC, listaCategorias.get(position).getId_categoria());
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }

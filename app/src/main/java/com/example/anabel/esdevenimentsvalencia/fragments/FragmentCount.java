@@ -48,8 +48,9 @@ public class FragmentCount extends Fragment implements View.OnClickListener, Tar
 
         botonGuardar.setOnClickListener(this);
 
+
         // Se lanza la tarea
-        TareaRest tarea = new TareaRest(getContext(), WebService.CONSULTAR_USUARIO, "GET", WebService.URL_CUENTA_USUARIO+ LoginActivity.campoUsuario.getText().toString(), null, this);
+        TareaRest tarea = new TareaRest(getContext(), WebService.CONSULTAR_USUARIO, "GET", WebService.URL_CUENTA_USUARIO, null, this);
         tarea.execute();
 
 
@@ -73,8 +74,8 @@ public class FragmentCount extends Fragment implements View.OnClickListener, Tar
 
                     if (listaUsuario != null) {
 
-                        campoUser.setText(listaUsuario.getUsername());
-                        campoEmail.setText(listaUsuario.getEmail());
+                        //campoUser.setText(listaUsuario.getUsername());
+                        //campoEmail.setText(listaUsuario.getEmail());
                     }
                 }
             }

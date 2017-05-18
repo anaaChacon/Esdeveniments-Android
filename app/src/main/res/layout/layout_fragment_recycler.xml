@@ -3,14 +3,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <GridView
-        android:id="@+id/gridCategories"
+    <ListView
+        android:id="@+id/listaEventos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clickable="true"
-        android:numColumns="2"
-        android:verticalSpacing="@dimen/universal"
-        android:horizontalSpacing="@dimen/layout"
-        android:layout_marginLeft="@dimen/layout"
-        android:layout_marginRight="@dimen/layout"/>
+        android:paddingTop="@dimen/layout_image"
+        />
+
 </LinearLayout>

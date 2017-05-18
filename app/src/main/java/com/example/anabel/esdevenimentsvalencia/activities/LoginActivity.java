@@ -8,11 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.anabel.esdevenimentsvalencia.R;
 import com.example.anabel.esdevenimentsvalencia.Servidor.TareaRest;
 import com.example.anabel.esdevenimentsvalencia.Servidor.WebService;
 import com.example.anabel.esdevenimentsvalencia.models.Usuarios;
 
+import io.fabric.sdk.android.Fabric;
 import java.util.ArrayList;
 
 import es.dmoral.toasty.Toasty;
@@ -20,12 +22,13 @@ import es.dmoral.toasty.Toasty;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, TareaRest.TareaRestListener{
 
     private Button botonLogin, botonRegistro;
-    public static EditText campoUsuario, campoPassword;
+    private EditText campoUsuario, campoPassword;
     private ArrayList<Usuarios> loginUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_login);
 
         campoUsuario = (EditText)findViewById(R.id.campUsuari);

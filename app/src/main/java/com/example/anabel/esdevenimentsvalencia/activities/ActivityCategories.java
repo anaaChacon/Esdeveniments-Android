@@ -12,8 +12,7 @@ import com.example.anabel.esdevenimentsvalencia.global.Constants;
 
 public class ActivityCategories extends AppCompatActivity {
 
-    private TextView etiquetaTitle;
-
+    public static TextView etiquetaTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +22,9 @@ public class ActivityCategories extends AppCompatActivity {
         etiquetaTitle = (TextView)findViewById(R.id.titlePrincipal);
 
         Intent i = getIntent();
-        etiquetaTitle.setText(i.getStringExtra(MainActivity.TITLE));
+        etiquetaTitle.setText(i.getStringExtra(Constants.TITLE));
 
-
-        switch (i.getIntExtra(MainActivity.CODE, -1)){
+        switch (i.getIntExtra(Constants.CODE, -1)){
             case Constants.CODE_CALENDAR:
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, FragmentEventsCategories.newInstance()).commitNow();
                 break;

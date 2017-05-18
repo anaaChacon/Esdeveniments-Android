@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/layout">
+
+    <ImageView
+        android:id="@+id/imagenEvento"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:background="@drawable/login_grey"
+        android:scaleType="fitXY" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/colorHintWhite"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/camps">
+
+        <TextView
+            android:id="@+id/eventoNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/title1"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/eventoDireccion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/titleCategory"
+            android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/eventoFecha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:layout_marginRight="@dimen/layout"
+                tools:targetApi="jelly_bean_mr1" />
+
+    </LinearLayout>
+</LinearLayout>

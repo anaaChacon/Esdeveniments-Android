@@ -1,6 +1,8 @@
 package com.example.anabel.esdevenimentsvalencia.Servidor;
 
 import com.example.anabel.esdevenimentsvalencia.models.Categorias;
+import com.example.anabel.esdevenimentsvalencia.models.Eventos;
+import com.example.anabel.esdevenimentsvalencia.models.Lugares;
 import com.example.anabel.esdevenimentsvalencia.models.Usuarios;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -21,7 +23,7 @@ public class WebService {
         this.context = context;
     }
 
-    /** CONSTANTES RELACIONADAS CON PELÍCULAS **/
+     /** CONSTANTES RELACIONADAS CON PELÍCULAS **/
     public static String URL_LOGIN_USUARIO = "http://84.123.121.34:8080/api/consultes.php/usuarios";
     public static final int CODIGO_CONSULTA_LOGIN_USUARIO = 0;
 
@@ -37,6 +39,14 @@ public class WebService {
     public static String URL_CUENTA_USUARIO = "http://84.123.121.34:8080/api/consultes.php/usuario-compte/";
     public static final int CONSULTAR_USUARIO = 3;
 
+    /*CONSULTAR VALIDAR LOGIN USER*/
+    public static String URL_CONSULTA_EVENTOS = "http://84.123.121.34:8080/api/consultes.php/evento/";
+    public static final int CONSULTAR_EVENTOS = 4;
+
+    /*CONSULTAR VALIDAR LOGIN USER*/
+    public static String URL_CONSULTA_LUGARES = "http://84.123.121.34:8080/api/consultes.php/lugares";
+    public static final int CONSULTAR_LUGARES = 5;
+
     /** MÉTODOS RELACIONADOS CON PELÍCULAS**/
     //Convierte un objeto JSON en una lista de películas
     public static ArrayList<Categorias> procesarListaCategorias(String objetoJSON){
@@ -45,6 +55,21 @@ public class WebService {
             Type tipoLista = new TypeToken<ArrayList<Categorias>>(){}.getType();
             ArrayList<Categorias> categorias = gson.fromJson(objetoJSON,tipoLista);
             return categorias;
+        } catch (Exception e){
+            //Publico un Toast en la activity que nos llamó
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+            return null;
+        }
+    }
+
+    /** MÉTODOS RELACIONADOS CON PELÍCULAS**/
+    //Convierte un objeto JSON en una lista de películas
+    public static ArrayList<Lugares> procesarListaLugares(String objetoJSON){
+        Gson gson = new Gson();
+        try {
+            Type tipoLista = new TypeToken<ArrayList<Lugares>>(){}.getType();
+            ArrayList<Lugares> lugares = gson.fromJson(objetoJSON,tipoLista);
+            return lugares;
         } catch (Exception e){
             //Publico un Toast en la activity que nos llamó
             Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -94,20 +119,20 @@ public class WebService {
         }
     }
 
-    /** MÉTODOS RELACIONADOS CON PELÍCULAS
+    // MÉTODOS RELACIONADOS CON PELÍCULAS
     //Convierte un objeto JSON en una lista de valoraciones
-    public static ArrayList<Valoracion> procesarListaValoraciones(String objetoJSON){
+    public static ArrayList<Eventos> procesarListaEventos(String objetoJSON){
         Gson gson = new Gson();
         try {
-            Type tipoLista = new TypeToken<ArrayList<Valoracion>>(){}.getType();
-            ArrayList<Valoracion> valoraciones = gson.fromJson(objetoJSON,tipoLista);
-            return valoraciones;
+            Type tipoLista = new TypeToken<ArrayList<Eventos>>(){}.getType();
+            ArrayList<Eventos> eventos = gson.fromJson(objetoJSON,tipoLista);
+            return eventos;
         } catch (Exception e){
             //Publico un Toast en la activity que nos llamó
             Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
             return null;
         }
-    }**/
+    }
 
 
 

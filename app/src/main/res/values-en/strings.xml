@@ -23,4 +23,6 @@
     <string name="titleCompte">MY ACCOUNT</string>
     <string name="changePass">Change Password</string>
     <string name="save">Save</string>
+    <string name="direction_not_found">The event does not have an assigned address</string>
+    <string name="unknown_place">Unknown place</string>
 </resources>

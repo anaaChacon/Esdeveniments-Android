@@ -12,17 +12,22 @@
         android:roundIcon="@mipmap/ic_launcher_events"
         android:supportsRtl="true"
         android:theme="@style/AppTheme2">
-        <activity
-            android:name=".activities.LoginActivity">
+        <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MainActivity"/>
-        <activity android:name=".activities.RegistreActivity"/>
-        <activity android:name=".activities.ActivityCategories"></activity>
+        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.RegistreActivity" />
+        <activity android:name=".activities.ActivityCategories" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="cd2f3772058dd197039e94d103ba98cd4e30f919" />
+
+        <activity android:name=".activities.ActivityListEvents"></activity>
     </application>
 
 </manifest>

@@ -6,11 +6,13 @@ package com.example.anabel.esdevenimentsvalencia.models;
 
 public class Categorias {
 
+    private int id_categoria;
     private String nombre, foto_categoria;
 
     public Categorias(){}
 
-    public Categorias(String nombre, String foto_categoria) {
+    public Categorias(int id_categoria, String nombre, String foto_categoria) {
+        this.id_categoria = id_categoria;
         this.nombre = nombre;
         this.foto_categoria = foto_categoria;
     }
@@ -29,5 +31,13 @@ public class Categorias {
 
     public void setFoto_categoria(String foto_categoria) {
         this.foto_categoria = foto_categoria;
+    }
+
+    public int getId_categoria() {
+        return id_categoria;
+    }
+
+    public void setId_categoria(int id_categoria) {
+        this.id_categoria = id_categoria;
     }
 }

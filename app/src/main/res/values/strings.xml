@@ -22,4 +22,6 @@
     <string name="titleCompte">EL MEU COMPTE</string>
     <string name="changePass">Canviar contrasenya</string>
     <string name="save">Desar</string>
+    <string name="direction_not_found">L\'esdeveniment no té una direcció assignada</string>
+    <string name="unknown_place">Lloc desconegut</string>
 </resources>
