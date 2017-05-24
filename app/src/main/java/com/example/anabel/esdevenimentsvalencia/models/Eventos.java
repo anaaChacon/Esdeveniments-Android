@@ -12,11 +12,9 @@ public class Eventos {
     private String nombre, descripcion, info_secundaria, foto_miniatura, foto_principal;
     private String fecha_inicio, fecha_fin;
     private String hora_inicio, hora_fin;
-    private int idCategoria, idLugar, idOrganizador;
-//  private Lugares idLugar2;
-//    private Categorias idCategoria2;
+    private int idCategoria, idLugar, idOrganizador, id_evento;
 
-    public Eventos(String nombre, String descripcion, String info_secundaria, String foto_miniatura, String foto_principal, String fecha_inicio, String fecha_fin, String hora_inicio, String hora_fin, int idCategoria, int idLugar, int idOrganizador) {
+    public Eventos(String nombre, String descripcion, String info_secundaria, String foto_miniatura, String foto_principal, String fecha_inicio, String fecha_fin, String hora_inicio, String hora_fin, int idCategoria, int idLugar, int idOrganizador, int id_evento) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.info_secundaria = info_secundaria;
@@ -29,6 +27,7 @@ public class Eventos {
         this.idCategoria = idCategoria;
         this.idLugar = idLugar;
         this.idOrganizador = idOrganizador;
+        this.id_evento = id_evento;
     }
 
     public String getNombre() {
@@ -125,5 +124,13 @@ public class Eventos {
 
     public void setIdOrganizador(int idOrganizador) {
         this.idOrganizador = idOrganizador;
+    }
+
+    public int getId_evento() {
+        return id_evento;
+    }
+
+    public void setId_evento(int id_evento) {
+        this.id_evento = id_evento;
     }
 }

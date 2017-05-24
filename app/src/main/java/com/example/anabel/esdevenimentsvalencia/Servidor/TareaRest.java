@@ -8,12 +8,16 @@ import android.util.Base64;
 import android.widget.Toast;
 
 import com.example.anabel.esdevenimentsvalencia.R;
+import com.example.anabel.esdevenimentsvalencia.activities.LoginActivity;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import es.dmoral.toasty.Toasty;
+
 /**
  * Created by Anabel on 06/05/2017.
  */
@@ -114,8 +118,7 @@ public class TareaRest extends AsyncTask <Void, String, String> {
                 conexion.setRequestProperty("Authorization", "Basic " +
                         Base64.encodeToString(cadenaAutBasica.getBytes(), Base64.NO_WRAP));
             }
-
-            // ...
+                        // ...
             // ...
             if (operacionREST.equals("POST") || operacionREST.equals("PUT")) {
                 //Fijamos el tipo de dato a incluir
@@ -179,6 +182,6 @@ public class TareaRest extends AsyncTask <Void, String, String> {
     @Override
     protected void onProgressUpdate(String... error) {
         //Mostramos las incidencias de conexión con un Toast en la pantalla de la actividad que nos llamó
-        Toast.makeText(contexto, error[0], Toast.LENGTH_LONG).show();
+        //Toast.makeText(contexto, error[0], Toast.LENGTH_LONG).show();
     }
 }

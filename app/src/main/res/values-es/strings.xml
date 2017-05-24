@@ -25,4 +25,17 @@
     <string name="save">Guardar</string>
     <string name="direction_not_found">El evento no tiene una dirección asignada</string>
     <string name="unknown_place">Lugar desconocido</string>
+    <string name="unknown_events">No hay eventos disponibles</string>
+    <string name="principal">Principal</string>
+    <string name="arrive">¿Cómo llegar?</string>
+    <string name="infoLloc">Info. del lugar</string>
+    <string name="category">Categoria:</string>
+    <string name="more"><u>Leer más</u></string>
+    <string name="less"><u>Leer menos</u></string>
+    <string name="suscription">!Suscripción realizada con éxito!</string>
+    <string name="not_suscription">No se ha suscrito al evento</string>
+    <string name="cancelEvent"><u>Si desea cancelar pulse aquí</u></string>
+    <string name="map">Ir al mapa</string>
+    <string name="sinOut">Cerrar sesión</string>
+    <string name="update">Modificación realizada</string>
 </resources>

@@ -7,22 +7,22 @@ package com.example.anabel.esdevenimentsvalencia.models;
 public class Categorias {
 
     private int id_categoria;
-    private String nombre, foto_categoria;
+    private String nombre_categoria, foto_categoria;
 
     public Categorias(){}
 
-    public Categorias(int id_categoria, String nombre, String foto_categoria) {
+    public Categorias(int id_categoria, String nombre_categoria, String foto_categoria) {
         this.id_categoria = id_categoria;
-        this.nombre = nombre;
+        this.nombre_categoria = nombre_categoria;
         this.foto_categoria = foto_categoria;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombre_categoria() {
+        return nombre_categoria;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre_categoria(String nombre_categoria) {
+        this.nombre_categoria = nombre_categoria;
     }
 
     public String getFoto_categoria() {

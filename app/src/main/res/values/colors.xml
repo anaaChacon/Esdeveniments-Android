@@ -8,7 +8,7 @@
     <color name="colorMarkDark">#61380b</color>
     <color name="colorMarkLigth">#f7fe2e</color>
     <color name="colorMark">#5F4C0B</color>
-    <color name="colorHintWhite">#ffffff</color>
+    <color name="colorHintWhite">#dfffffff</color>
     <color name="colorDarkBlack">#66000000</color>
     <color name="colorBlack">#000000</color>
     <color name="colorCamps">#0b2f3a</color>

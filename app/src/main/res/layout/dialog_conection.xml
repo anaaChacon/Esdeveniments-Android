@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/camps"
+        android:layout_marginRight="@dimen/camps"
+        android:padding="@dimen/camps">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nº IP: "
+            android:textStyle="bold"
+            android:textColor="@color/colorBlack"/>
+
+        <EditText
+            android:id="@+id/numIp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/camps"
+        android:layout_marginRight="@dimen/camps">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Puerto: "
+            android:textStyle="bold"
+            android:textColor="@color/colorBlack"/>
+
+        <EditText
+            android:id="@+id/numPuerto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/connect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/layout"
+        android:background="@color/colorBarra"
+        android:textColor="@color/colorHintWhite"
+        android:text="Conectar"
+        android:layout_marginBottom="@dimen/layout"/>
+</LinearLayout>

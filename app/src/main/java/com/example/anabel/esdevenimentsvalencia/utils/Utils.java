@@ -20,7 +20,7 @@ public class Utils {
             } catch (Exception e) {
                 return "";
             }
-            SimpleDateFormat appFormat = new SimpleDateFormat("EEEE dd/MM hh:mm");
+            SimpleDateFormat appFormat = new SimpleDateFormat("EEEE dd/MM hh:mm aa");
             return appFormat.format(date);
         } else {
             return "";

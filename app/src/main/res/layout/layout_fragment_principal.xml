@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorHintWhite">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/frameImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <ImageView
+            android:id="@+id/imagePrincipal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"/>
+
+        <ImageButton
+            android:id="@+id/imageSuscripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_margin="@dimen/layout_image" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/camps">
+        <TextView
+            android:id="@+id/nombreEvento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/title"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/nombreLugar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/stringButton"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/fechaEvento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/stringButton"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorBlack"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/camps">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/descripcionEvento"
+            android:textAlignment="center"
+            android:ellipsize="end"
+            android:layout_marginBottom="@dimen/layout_image"
+            android:textSize="@dimen/titleCategory" />
+
+        <TextView
+            android:id="@+id/detail_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/more"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorNotification"
+            />
+
+        <TextView
+            android:id="@+id/detail_less"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/less"
+            android:layout_gravity="center"
+            android:textColor="@color/colorNotification"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/descripcionEvento2"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:textAlignment="center"
+            android:layout_marginBottom="@dimen/layout_image"
+            android:textSize="@dimen/titleCategory" />
+
+        <TextView
+            android:id="@+id/infoEvento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:textColor="@color/colorBlack"
+            android:layout_marginBottom="@dimen/layout_image"
+            android:textSize="@dimen/titles"/>
+        <TextView
+            android:id="@+id/categoriaEvento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/layout_image"
+            android:textColor="@color/colorBlack"/>
+    </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

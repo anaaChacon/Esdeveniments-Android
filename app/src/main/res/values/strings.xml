@@ -24,4 +24,17 @@
     <string name="save">Desar</string>
     <string name="direction_not_found">L\'esdeveniment no té una direcció assignada</string>
     <string name="unknown_place">Lloc desconegut</string>
+    <string name="unknown_events">No hi ha esdeveniments disponibles</string>
+    <string name="principal">Principal</string>
+    <string name="arrive">Com arribar-hi?</string>
+    <string name="infoLloc">Info. Del lloc</string>
+    <string name="category">Categoria:</string>
+    <string name="more"><u>Llegir més</u></string>
+    <string name="less"><u>Llegir menys</u></string>
+    <string name="suscription">Subscripció realitzada amb èxit!</string>
+    <string name="not_suscription">No s\'ha subscrit a l\'esdeveniment</string>
+    <string name="cancelEvent"><u>Si voleu cancel·lar premi aquí</u></string>
+    <string name="map">Anar al mapa</string>
+    <string name="sinOut">Tancar sessió</string>
+    <string name="update">Modificació realitzada</string>
 </resources>

@@ -1,8 +1,6 @@
 package com.example.anabel.esdevenimentsvalencia.adapters;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.LauncherApps;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.view.LayoutInflater;
@@ -16,7 +14,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.anabel.esdevenimentsvalencia.R;
-import com.example.anabel.esdevenimentsvalencia.activities.ActivityListEvents;
 import com.example.anabel.esdevenimentsvalencia.fragments.FragmentEventsCategories;
 import com.example.anabel.esdevenimentsvalencia.models.Categorias;
 
@@ -73,7 +70,7 @@ public class AdapterCategoria extends ArrayAdapter<Categorias>{
         });
 
         Glide.with(contexto).load(FragmentEventsCategories.listaCategorias.get(position).getFoto_categoria()).placeholder(R.drawable.login_grey).centerCrop().into(imageSub);
-        titleCategory.setText(categoria.getNombre());
+        titleCategory.setText(categoria.getNombre_categoria());
 
         return convertView;
     }

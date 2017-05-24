@@ -25,4 +25,17 @@
     <string name="save">Save</string>
     <string name="direction_not_found">The event does not have an assigned address</string>
     <string name="unknown_place">Unknown place</string>
+    <string name="unknown_events">No events available</string>
+    <string name="principal">Principal</string>
+    <string name="arrive">How to get?</string>
+    <string name="infoLloc">Place Info</string>
+    <string name="category">Category:</string>
+    <string name="more"><u>Read more</u></string>
+    <string name="less"><u>Read less</u></string>
+    <string name="suscription">Subscription successfully completed!</string>
+    <string name="not_suscription">You have not subscribed to the event</string>
+    <string name="cancelEvent"><u>If you wish to cancel click here</u></string>
+    <string name="map">Go to map</string>
+    <string name="sinOut">Sign off</string>
+    <string name="update">Modification made</string>
 </resources>

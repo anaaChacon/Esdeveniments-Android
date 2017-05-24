@@ -12,13 +12,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 import com.example.anabel.esdevenimentsvalencia.R;
 import com.example.anabel.esdevenimentsvalencia.Servidor.TareaRest;
 import com.example.anabel.esdevenimentsvalencia.Servidor.WebService;
-import com.example.anabel.esdevenimentsvalencia.activities.ActivityListEvents;
+import com.example.anabel.esdevenimentsvalencia.activities.ListEventsActivity;
 import com.example.anabel.esdevenimentsvalencia.adapters.AdapterCategoria;
 import com.example.anabel.esdevenimentsvalencia.global.Constants;
 import com.example.anabel.esdevenimentsvalencia.models.Categorias;
@@ -35,12 +34,15 @@ public class FragmentEventsCategories extends Fragment implements TareaRest.Tare
     public static List<Categorias> listaCategorias;
     private AdapterCategoria adapterCategorias;
     private GridView gridCategories;
+    public static String title;
 
     public FragmentEventsCategories() {
     }
 
-    public static FragmentEventsCategories newInstance() {
+    public static FragmentEventsCategories newInstance(String titleCategoria) {
         Bundle args = new Bundle();
+        args.putString(Constants.TITLE, titleCategoria);
+        title = titleCategoria;
         FragmentEventsCategories fragment = new FragmentEventsCategories();
         fragment.setArguments(args);
         return fragment;
@@ -99,9 +101,10 @@ public class FragmentEventsCategories extends Fragment implements TareaRest.Tare
     @Override
     public void onItemClick(int position) {
 
-        Intent intent = new Intent(getActivity(), ActivityListEvents.class);
+        Intent intent = new Intent(getActivity(), ListEventsActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putString(Constants.TITLE_ACTIVITY_LIST, listaCategorias.get(position).getNombre());
+        bundle.putString(Constants.TITLE_ACTIVITY_LIST, listaCategorias.get(position).getNombre_categoria());
+        bundle.putString(Constants.TITLE, title);
         bundle.putInt(Constants.ITEM_MUSIC, listaCategorias.get(position).getId_categoria());
         intent.putExtras(bundle);
         startActivity(intent);

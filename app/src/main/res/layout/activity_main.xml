@@ -36,6 +36,7 @@
         android:layout_gravity="center">
 
         <LinearLayout
+            android:id="@+id/layoutCalendari"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -69,41 +70,6 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="@dimen/universal"
-            android:background="@color/colorBlack">
-
-            <ImageView
-                android:id="@+id/imageLlocs"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/camps"
-                app:srcCompat="@drawable/marcador_mapa_white"/>
-
-            <TextView
-                android:id="@+id/titleLlocs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/titleLlocs"
-                android:textColor="@color/colorHintWhite"
-                android:textSize="@dimen/titles"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="@dimen/layout"/>
-
-            <LinearLayout
-                android:layout_width="120dp"
-                android:layout_height="8dp"
-                android:background="@color/colorBarra">
-
-            </LinearLayout>
-        </LinearLayout>
-
     </LinearLayout>
 
     <LinearLayout
@@ -114,6 +80,7 @@
         android:layout_gravity="center">
 
         <LinearLayout
+            android:id="@+id/layoutInteresa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorBlack"
@@ -149,6 +116,7 @@
 
 
         <LinearLayout
+            android:id="@+id/layoutCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
