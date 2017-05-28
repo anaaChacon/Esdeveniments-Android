@@ -56,12 +56,6 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
 
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
-
-    @Override
     public void onClick(View view) {
 
         if(view.getId() == R.id.botonRegistro){

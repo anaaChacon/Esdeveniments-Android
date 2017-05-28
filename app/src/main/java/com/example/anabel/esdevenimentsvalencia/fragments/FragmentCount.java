@@ -93,6 +93,7 @@ public class FragmentCount extends Fragment implements View.OnClickListener, Tar
         }
     }
 
+
     @Override
     public void onTareaRestFinalizada(int codigoOperacion, int codigoRespuestaHttp, String respuestaJson) {
         if(codigoRespuestaHttp == 200 || respuestaJson != null && !respuestaJson.isEmpty()) {
@@ -112,6 +113,7 @@ public class FragmentCount extends Fragment implements View.OnClickListener, Tar
             }
             if(codigoOperacion == 12){
                 Toasty.info(getActivity(), getContext().getString(R.string.update), Toast.LENGTH_LONG, true).show();
+                campoPassword.setText("");
             }
         }
     }

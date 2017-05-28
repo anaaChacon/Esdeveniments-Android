@@ -38,7 +38,7 @@ import es.dmoral.toasty.Toasty;
 public class FragmentPrincipal extends Fragment implements TareaRest.TareaRestListener, View.OnClickListener{
 
     public static int id_categoria, id_lugar;
-    public static List<Eventos> infoEventos;
+    public static List<Eventos> infoEventos, events;
     public static List<Lugares> listaLlocs;
 
     private ImageView imagePrincipal;
@@ -47,7 +47,6 @@ public class FragmentPrincipal extends Fragment implements TareaRest.TareaRestLi
     private int infoLines;
     private Suscripciones suscripciones;
     private Suscripciones suscripcion;
-    public static boolean click;
 
     public FragmentPrincipal(){}
 
@@ -80,7 +79,6 @@ public class FragmentPrincipal extends Fragment implements TareaRest.TareaRestLi
             Toasty.warning(getContext(), getContext().getString(R.string.connection), Toast.LENGTH_SHORT, true).show();
         }
 
-
         imagePrincipal = (ImageView)view.findViewById(R.id.imagePrincipal);
         etiquetaNombreEvento = (TextView)view.findViewById(R.id.nombreEvento);
         etiquetaNombreLugar = (TextView)view.findViewById(R.id.nombreLugar);
@@ -93,19 +91,15 @@ public class FragmentPrincipal extends Fragment implements TareaRest.TareaRestLi
         more = (TextView)view.findViewById(R.id.detail_more);
         less = (TextView)view.findViewById(R.id.detail_less);
 
+        imageSuscripcion.setBackground(getResources().getDrawable(R.drawable.star_ic_circle));
+        imageSuscripcion.setEnabled(true);
+
         more.setVisibility(View.VISIBLE);
         less.setVisibility(View.GONE);
 
         more.setOnClickListener(this);
         less.setOnClickListener(this);
         imageSuscripcion.setOnClickListener(this);
-
-        if(click == true){
-            imageSuscripcion.setBackground(getResources().getDrawable(R.drawable.star_ic_circle_yellow));
-            imageSuscripcion.setEnabled(false);
-        }else{
-            imageSuscripcion.setBackground(getResources().getDrawable(R.drawable.star_ic_circle));
-        }
 
         // Se lanza la tarea
         TareaRest tarea2 = new TareaRest(getContext(), WebService.CONSULTAR_LUGAR, "GET", WebService.URL_CONSULTA_LUGAR+id_lugar, null, this);
@@ -135,6 +129,7 @@ public class FragmentPrincipal extends Fragment implements TareaRest.TareaRestLi
                     etiquetaInfoEvento.setText(infoEventos.get(0).getInfo_secundaria());
                     etiquetaCategoria.setText(getString(R.string.category) + " " + ListEventsActivity.titleEvent.getText().toString());
 
+                    imageSuscripcion.setTag(infoEventos.get(0).getNombre().toString());
 
                     etiquetaDescripcionEvento.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                         @Override
@@ -158,6 +153,9 @@ public class FragmentPrincipal extends Fragment implements TareaRest.TareaRestLi
                         }
                     });
                 }
+                // Se lanza la tarea
+                TareaRest tarea = new TareaRest(getContext(), WebService.CONSULTAR_SUSCRIPCION, "GET", WebService.URL_CONSULTAR_SUSCRIPCION+LoginActivity.loginUsuario.get(0).getId_usuario(), null, this);
+                tarea.execute();
             }
             if(codigoOperacion == 7){
                 listaLlocs = WebService.procesarListaLugares(respuestaJson);
@@ -168,6 +166,25 @@ public class FragmentPrincipal extends Fragment implements TareaRest.TareaRestLi
             }
             if (codigoOperacion == 8) {
                 Toasty.info(getActivity(), getString(R.string.suscription), Toast.LENGTH_SHORT).show();
+            }
+            if(codigoOperacion == 9){
+
+                events = WebService.procesarListaEventos(respuestaJson);
+                String nameTag = " ";
+                for(int i = 0; i < events.size(); i++) {
+                    if(events.get(i).getNombre().toString().contains(imageSuscripcion.getTag().toString())) {
+                        nameTag = events.get(i).getNombre().toString();
+                    }
+                }
+
+                if(nameTag.toString().equals(imageSuscripcion.getTag().toString())) {
+                    imageSuscripcion.setBackground(getResources().getDrawable(R.drawable.star_ic_circle_yellow));
+                    imageSuscripcion.setEnabled(false);
+
+                }else{
+                    imageSuscripcion.setBackground(getResources().getDrawable(R.drawable.star_ic_circle));
+                    imageSuscripcion.setEnabled(true);
+                }
             }
         }
     }
@@ -206,7 +223,6 @@ public class FragmentPrincipal extends Fragment implements TareaRest.TareaRestLi
             TareaRest tarea = new TareaRest(getActivity(), WebService.INSERTAR_SUSCRIPCION,"POST",WebService.URL_INSERTAR_SUSCRIPCION,parametroJson,this);
             tarea.execute();
 
-            click = true;
             imageSuscripcion.setEnabled(false);
         }
     }

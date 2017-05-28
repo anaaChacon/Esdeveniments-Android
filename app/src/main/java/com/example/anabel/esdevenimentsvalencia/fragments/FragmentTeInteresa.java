@@ -90,7 +90,6 @@ public class FragmentTeInteresa extends Fragment implements TareaRest.TareaRestL
 
                         adapterSuscripciones = new AdapterSuscripciones(getContext(), (ArrayList) listaSuscripciones);
                         listaInteresa.setAdapter(adapterSuscripciones);
-                        FragmentPrincipal.click = true;
                     }
                 }
             }
@@ -110,7 +109,5 @@ public class FragmentTeInteresa extends Fragment implements TareaRest.TareaRestL
         //Eliminar el listView y los datos de la base de datos
         listaSuscripciones.remove(i);
         adapterSuscripciones.notifyDataSetChanged();
-
-        FragmentPrincipal.click = false;
     }
 }

@@ -76,8 +76,8 @@ public class FragmentListEvents extends Fragment implements TareaRest.TareaRestL
         }
 
         // Se lanza la tarea
-        TareaRest tarea2 = new TareaRest(getContext(), WebService.CONSULTAR_LUGARES, "GET", WebService.URL_CONSULTA_LUGARES, null, this);
-        tarea2.execute();
+//        TareaRest tarea2 = new TareaRest(getContext(), WebService.CONSULTAR_LUGARES, "GET", WebService.URL_CONSULTA_LUGARES, null, this);
+//        tarea2.execute();
 
         // Se lanza la tarea
         TareaRest tarea = new TareaRest(getContext(), WebService.CONSULTAR_EVENTOS, "GET", WebService.URL_CONSULTA_EVENTOS+pot, null, this);
@@ -92,6 +92,7 @@ public class FragmentListEvents extends Fragment implements TareaRest.TareaRestL
         if(codigoRespuestaHttp == 200 || respuestaJson != null && !respuestaJson.isEmpty()) {
             if (codigoOperacion == 4) {
                 listaEventos = WebService.procesarListaEventos(respuestaJson);
+                listaLugares = WebService.procesarListaLugares(respuestaJson);
 
                 if (listaEventos != null) {
 
@@ -104,13 +105,13 @@ public class FragmentListEvents extends Fragment implements TareaRest.TareaRestL
                     Toast.makeText(getActivity(), getString(R.string.direction_not_found), Toast.LENGTH_LONG).show();
                 }
             }
-            if(codigoOperacion == 5){
-                listaLugares = WebService.procesarListaLugares(respuestaJson);
-
-                if (listaLugares == null) {
-                    Toast.makeText(getActivity(), getString(R.string.direction_not_found), Toast.LENGTH_LONG).show();
-                }
-            }
+//            if(codigoOperacion == 5){
+//
+//
+//                if (listaLugares == null) {
+//                    Toast.makeText(getActivity(), getString(R.string.direction_not_found), Toast.LENGTH_LONG).show();
+//                }
+//            }
 
         }else{
             Toasty.info(getActivity(), getString(R.string.unknown_events), Toast.LENGTH_LONG, true).show();

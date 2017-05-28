@@ -26,12 +26,28 @@ public class ActivityCategories extends AppCompatActivity {
 
         switch (i.getIntExtra(Constants.CODE, -1)){
             case Constants.CODE_CALENDAR:
-                getSupportFragmentManager().beginTransaction().replace(R.id.container, FragmentEventsCategories.newInstance()).commitNow();
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, FragmentEventsCategories.newInstance(etiquetaTitle.getText().toString())).commitNow();
                 break;
             case Constants.CODE_COMPTE:
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, FragmentCount.newInstance()).commitNow();
         }
 
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        finish();
     }
 }

@@ -39,11 +39,11 @@ public class MainActivity extends AppCompatActivity implements ImageView.OnClick
 
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        finish();
+//    }
 
     @Override
     public void onClick(View view) {
@@ -74,5 +74,7 @@ public class MainActivity extends AppCompatActivity implements ImageView.OnClick
                 break;
         }
     }
+
+
 
 }
