@@ -77,6 +77,9 @@ public class WebService {
     public static String URL_UPDATE_USER = "http://"+DialogFragmentConnection.dir+"/api/consultes.php/modificar-usuario/";
     public static final int UPDATE_USER = 12;
 
+    /*CONSULTAR VALIDAR LOGIN USER*/
+    public static String URL_USER = "http://"+DialogFragmentConnection.dir+"/api/consultes.php/usuario/";
+    public static final int USER = 13;
 
     /** MÉTODOS RELACIONADOS CON PELÍCULAS**/
     //Convierte un objeto JSON en una lista de películas

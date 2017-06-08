@@ -108,13 +108,10 @@ public class FragmentPrincipal extends Fragment implements TareaRest.TareaRestLi
         // Se lanza la tarea
         TareaRest tarea = new TareaRest(getContext(), WebService.CONSULTAR_EVENTO_DETAIL, "GET", WebService.URL_CONSULTA_EVENTO_DETAIL+id_categoria+"/"+id_lugar, null, this);
         tarea.execute();
-
         return view;
     }
-
     @Override
     public void onTareaRestFinalizada(int codigoOperacion, int codigoRespuestaHttp, String respuestaJson) {
-
         if(codigoRespuestaHttp == 200 || respuestaJson != null && !respuestaJson.isEmpty()) {
             if (codigoOperacion == 6) {
                 infoEventos = WebService.procesarListaEventos(respuestaJson);
@@ -128,27 +125,21 @@ public class FragmentPrincipal extends Fragment implements TareaRest.TareaRestLi
                     etiquetaDescripcionEvento.setText(infoEventos.get(0).getDescripcion());
                     etiquetaInfoEvento.setText(infoEventos.get(0).getInfo_secundaria());
                     etiquetaCategoria.setText(getString(R.string.category) + " " + ListEventsActivity.titleEvent.getText().toString());
-
                     imageSuscripcion.setTag(infoEventos.get(0).getNombre().toString());
-
                     etiquetaDescripcionEvento.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                         @Override
                         public void onGlobalLayout() {
                             etiquetaDescripcionEvento2.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-
                             float lineHeight = etiquetaDescripcionEvento.getLineHeight();
                             infoLines = (int) (etiquetaDescripcionEvento.getHeight() / lineHeight);
-
                             if (infoLines <= 3) {
                                 more.setVisibility(View.GONE);
                                 less.setVisibility(View.GONE);
                             }
-
                             if(infoLines > 3){
                                 more.setVisibility(View.VISIBLE);
                                 less.setVisibility(View.GONE);
                             }
-
                             etiquetaDescripcionEvento.setMaxLines(3);
                         }
                     });

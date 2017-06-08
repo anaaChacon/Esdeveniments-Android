@@ -1,5 +1,6 @@
 package com.example.anabel.esdevenimentsvalencia.activities;
 
+import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -28,7 +29,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText campoUsuario, campoPassword;
     public static ArrayList<Usuarios> loginUsuario;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,18 +43,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         botonLogin.setOnClickListener(this);
         botonRegistro.setOnClickListener(this);
 
-        DialogFragmentConnection.newInstance().show(getFragmentManager(), null);
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        DialogFragmentConnection.newInstance().show(getFragmentManager(), null);
     }
 
     @Override
@@ -78,32 +72,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 
     @Override
     public void onTareaRestFinalizada(int codigoOperacion, int codigoRespuestaHttp, String respuestaJson) {
-
         if(codigoRespuestaHttp == 200 || respuestaJson != null && !respuestaJson.isEmpty()){
-
             if(codigoOperacion == 0){
-
                 loginUsuario = WebService.procesarListaUsuarios(respuestaJson);
-
                 if(loginUsuario != null){
-
                     //Comprobar si coinciden los datos
                     for(int i = 0; i < loginUsuario.size(); i++){
-
-                        if(loginUsuario.get(i).getUsername().equals(campoUsuario.getText().toString()) && !loginUsuario.get(i).getPassword().equals(campoPassword.getText().toString())){
+                        if(loginUsuario.get(i).getUsername().equals(campoUsuario.getText().toString()) &&
+                                !loginUsuario.get(i).getPassword().equals(campoPassword.getText().toString())){
                             Toasty.info(this, getString(R.string.passwordIncorrect), Toast.LENGTH_LONG, true).show();
                         }
-
-                        else if(loginUsuario.get(i).getUsername().equals(campoUsuario.getText().toString()) && loginUsuario.get(i).getPassword().equals(campoPassword.getText().toString())){
+                        else if(loginUsuario.get(i).getUsername().equals(campoUsuario.getText().toString()) &&
+                                loginUsuario.get(i).getPassword().equals(campoPassword.getText().toString())){
                             Intent intencion = new Intent(this, MainActivity.class);
                             Bundle bundle = new Bundle();
                             bundle.putString(Constants.USERNAME, campoUsuario.getText().toString());
                             intencion.putExtras(bundle);
                             startActivity(intencion);
-                            this.finish();
+                            campoUsuario.setText("");
+                            campoPassword.setText("");
                         }
                     }
                 }
@@ -111,20 +105,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }else{
             Toasty.info(this, getString(R.string.userNotExist), Toast.LENGTH_LONG, true).show();
         }
-    }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
     }
 }

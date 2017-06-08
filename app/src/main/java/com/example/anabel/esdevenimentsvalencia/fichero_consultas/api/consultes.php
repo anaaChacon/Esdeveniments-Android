@@ -47,7 +47,7 @@ $app->get('/',function()use ($app){
             
             //Preparamos la consulta
             
-                $consulta = $db->prepare("select id_categoria, nombre, foto_categoria from categorias");
+                $consulta = $db->prepare("select id_categoria, nombre_categoria, foto_categoria from categorias");
                 
             //Ejecutamos la consulta
                 
@@ -90,13 +90,13 @@ $app->get('/',function()use ($app){
 
  //get de clientes
     
-    $app->get('/usuarios', function () use ($app,$db){
+    $app->get('/usuarios/:user', function ($user) use ($app,$db){
         
         try{
             
             //Preparamos la consulta
             
-                $consulta = $db->prepare("select username,password from usuarios");
+                $consulta = $db->prepare("select id_usuario, username,password from usuarios where username = '$user'");
                 
             //Ejecutamos la consulta
                 
@@ -144,7 +144,7 @@ $app->get('/',function()use ($app){
             
             //Preparamos la consulta
             //Cambiar
-                $consulta = $db->prepare("select username,email from usuarios where username=$username");
+                $consulta = $db->prepare("select id_usuario,username,email from usuarios where username='$username'");
                 
             //Ejecutamos la consulta
                 
@@ -190,12 +190,14 @@ $app->get('/',function()use ($app){
         try{
             
             //Preparamos la consulta
-            
-                 $consulta = $db->prepare("select e.nombre,e.fecha_inicio,e.hora_inicio,e.foto_miniatura,l.nombreLugar 
+           
+                 $consulta = $db->prepare("select e.id_evento,e.nombre,e.fecha_inicio,e.hora_inicio,e.foto_miniatura,l.nombreLugar,l.direccion,l.informacion,l.imagen,l.coor_latitud, l.coor_longitud,e.idLugar,e.idCategoria 
 											from eventos e, lugares l, categorias c
 											where e.idLugar = l.id_lugar
                                             and e.idCategoria = c.id_categoria
-											and c.id_categoria = $categoria");
+											and c.id_categoria = $categoria
+                                            and CONCAT(e.fecha_fin, ' ', e.hora_fin) > sysdate()
+		    	                            ORDER BY CONCAT(e.fecha_fin, ' ', e.hora_fin)");
                 
             //Ejecutamos la consulta
                 
@@ -242,7 +244,54 @@ $app->get('/',function()use ($app){
             
             //Preparamos la consulta
             
-                 $consulta = $db->prepare("select id_lugar, nombreLugar from lugares");
+                 $consulta = $db->prepare("select id_lugar, nombreLugar, direccion, informacion, imagen from lugares");
+                
+            //Ejecutamos la consulta
+                
+                $consulta->execute();
+                
+            //Almacenamos los resultados de la consulta en un array
+                
+                $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+                
+            //Comprobamos si los resultados tienen un valor diferente a false
+                
+                if($resultados){
+                    
+                    //Establecemos el tipo de datos a enviar
+                    
+                        $app->response()->header('Content-Type', 'application/json');
+                        
+                    //Devolvemos el array como Json
+                        
+                        echo json_encode($resultados);
+                    
+                }
+                
+                else{
+                    
+                    throw new PDOException($consulta->errorInfo()[2]);
+                
+                }
+        }
+        
+        catch (Exception $ex) {
+
+            $app->response()->setStatus(404);
+            echo $e->getMessage();
+            
+        }
+        
+    });
+	
+	//ver los registros
+    $app->get('/lugar/:id', function ($id) use ($app,$db){
+        
+        try{
+            
+            //Preparamos la consulta
+            
+                 $consulta = $db->prepare("select id_lugar, nombreLugar, direccion, informacion, imagen from lugares where id_lugar = $id");
                 
             //Ejecutamos la consulta
                 
@@ -284,13 +333,18 @@ $app->get('/',function()use ($app){
 
 
 //Obtener todas las valoraciones    
-    $app->get('/valoraciones/:id/:id_pelicula', function ($id, $id_pelicula) use ($app,$db){
+    $app->get('/evento-principal/:categoria/:lugar', function ($categoria, $lugar) use ($app,$db){
         
         try{
             
             //Preparamos la consulta
             
-                $consulta = $db->prepare("select valoracion_usuario from valoracion where id_usuario=$id and id_pelicula=$id_pelicula");
+                $consulta = $db->prepare("select e.id_evento,e.foto_principal, e.nombre, l.nombreLugar, e.fecha_inicio, e.hora_inicio, e.descripcion, e.info_secundaria, c.nombre_categoria, c.id_categoria, l.id_lugar  
+										from eventos e, lugares l, categorias c
+										where e.idCategoria = c.id_categoria
+										and c.id_categoria = $categoria
+										and e.idLugar = l.id_lugar
+										and l.id_lugar = $lugar");
                 
             //Ejecutamos la consulta
                 
@@ -329,26 +383,168 @@ $app->get('/',function()use ($app){
         }
         
     });
+	
+	//Obtener todas las valoraciones    
+    $app->get('/suscripciones/:id', function ($id) use ($app,$db){
+        
+        try{
+            
+            //Preparamos la consulta
+            
+                $consulta = $db->prepare("SELECT s.idUsuario, s.idEvento, e.nombre, e.foto_miniatura, e.fecha_fin, e.hora_fin
+										from suscripciones s, eventos e, usuarios u
+										where s.idUsuario = u.id_usuario
+										and u.id_usuario = $id
+										and s.idEvento = e.id_evento");
+                
+            //Ejecutamos la consulta
+                
+                $consulta->execute();
+                
+            //Almacenamos los resultados de la consulta en un array
+                
+                $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+                
+            //Comprobamos si los resultados tienen un valor diferente a false
+                
+                if($resultados){
+                    
+                    //Establecemos el tipo de datos a enviar
+                    
+                        $app->response()->header('Content-Type', 'application/json');
+                        
+                    //Devolvemos el array como Json
+                        
+                        echo json_encode($resultados);
+                    
+                }
+                
+                else{
+                    
+                    throw new PDOException($consulta->errorInfo()[2]);
+                
+                }
+        }
+        
+        catch (Exception $ex) {
 
+            $app->response()->setStatus(404);
+            echo $e->getMessage();
+            
+        }
+        
+    });
+	
+	//Obtener todas las valoraciones    
+    $app->get('/usuario/:user', function ($user) use ($app,$db){
+        
+        try{
+            
+            //Preparamos la consulta
+            
+                $consulta = $db->prepare("select * from usuarios where username = '$user'");
+                
+            //Ejecutamos la consulta
+                
+                $consulta->execute();
+                
+            //Almacenamos los resultados de la consulta en un array
+                
+                $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+                
+            //Comprobamos si los resultados tienen un valor diferente a false
+                
+                if($resultados){
+                    
+                    //Establecemos el tipo de datos a enviar
+                    
+                        $app->response()->header('Content-Type', 'application/json');
+                        
+                    //Devolvemos el array como Json
+                        
+                        echo json_encode($resultados);
+                    
+                }
+                
+                else{
+                    
+                    echo null;
+                
+                }
+        }
+        
+        catch (Exception $ex) {
+
+            $app->response()->setStatus(404);
+            echo $e->getMessage();
+            
+        }
+        
+    });
+	
+	//Obtener todas las valoraciones    
+    $app->get('/info-lugar/:id', function ($id) use ($app,$db){
+        
+        try{
+            
+            //Preparamos la consulta
+            
+                $consulta = $db->prepare("select l.coor_latitud, l.coor_longitud, l.nombreLugar, e.idLugar, e.id_evento
+										from lugares l, eventos e
+										where l.id_lugar = e.idLugar
+										and e.id_evento = $id");
+                
+            //Ejecutamos la consulta
+                
+                $consulta->execute();
+                
+            //Almacenamos los resultados de la consulta en un array
+                
+                $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+                
+            //Comprobamos si los resultados tienen un valor diferente a false
+                
+                if($resultados){
+                    
+                    //Establecemos el tipo de datos a enviar
+                    
+                        $app->response()->header('Content-Type', 'application/json');
+                        
+                    //Devolvemos el array como Json
+                        
+                        echo json_encode($resultados);
+                    
+                }
+                
+                else{
+                    
+                    throw new PDOException($consulta->errorInfo()[2]);
+                
+                }
+        }
+        
+        catch (Exception $ex) {
+
+            $app->response()->setStatus(404);
+            echo $e->getMessage();
+            
+        }
+        
+    });
     
 
 //Insercion de un usuario
-    $app->post('/insertar-usuario', function () use ($app,$db) {
+  $app->post('/insertar-suscripcion/', function()use($app,$db) {
       try {
         //Obtenemos el contenido de la peticion
         $cuerpoPeticion = $app->request()->getBody();
-        $usuario = json_decode($cuerpoPeticion);
+        $suscripcion = json_decode($cuerpoPeticion);
         //Obtengo todos los atributos del objeto usuarioa (menos la imagen que es opcional)
-        
-		$username=$usuario->username;
-		$password=$usuario->password;
-		$nombre=$usuario->nombre;
-        $apellidos=$usuario->apellidos;
-        $edad=$usuario->edad;
-        $email=$usuario->email;
-        
+		$id_usuario = $suscripcion->idUsuario;
+		$id_evento = $suscripcion->idEvento;
+		
         // Preparamos la insercion SQL 
-        $consulta = $db->prepare("Insert into usuarios(username,password,nombre,apellidos,edad,email)values('$username','$password','$nombre','$apellidos','$edad','$email');");
+        $consulta = $db->prepare("INSERT INTO suscripciones(idUsuario,idEvento)VALUES('$id_usuario','$id_evento');");
         //Realizamos la insercion
         $resultado = $consulta->execute();
 		                  
@@ -356,7 +552,7 @@ $app->get('/',function()use ($app){
                 if ($resultado){
 
                     if ($consulta->rowCount()==1){
-                        echo "Usruario aÃ±adido";
+                        echo "Suscripcion aÃ±adido";
                     }
                     else {
                         //No exista el cliente
@@ -379,29 +575,29 @@ $app->get('/',function()use ($app){
     }
 });
 
-//insertar una valoracion
-$app->post('/insertar-valoracion',function()use($app,$db){
-    try {
+ $app->post('/insertar-usuario', function()use($app,$db) {
+      try {
         //Obtenemos el contenido de la peticion
         $cuerpoPeticion = $app->request()->getBody();
-        $valoracion = json_decode($cuerpoPeticion);
-        //Obtengo todos los atributos del objeto cliente (menos la imagen que es opcional)
-        
-        $id_usuario=$valoracion->id_usuario;
-        $id_pelicula=$valoracion->id_pelicula;
-        $valoracion_usuario=$valoracion->valoracion_usuario;
-        
-        
-        // Preparamos la insercion SQL
-        $consulta = $db->prepare("Insert into valoracion(id_usuario,id_pelicula,valoracion_usuario)values('$id_usuario','$id_pelicula','$valoracion_usuario');");
+        $usuario = json_decode($cuerpoPeticion);
+        //Obtengo todos los atributos del objeto usuarioa (menos la imagen que es opcional)
+		$user = $usuario->username;
+		$pass = $usuario->password;
+		$name = $usuario->nombre;
+		$subrname = $usuario->apellidos;
+		$age = $usuario->edad;
+		$mail = $usuario->email;
+		
+        // Preparamos la insercion SQL 
+        $consulta = $db->prepare("INSERT INTO usuarios(username,password,nombre,apellidos,edad,email)VALUES('$user','$pass','$name','$subrname','$age','$mail');");
         //Realizamos la insercion
         $resultado = $consulta->execute();
-		
+		                  
             
                 if ($resultado){
 
                     if ($consulta->rowCount()==1){
-                        echo "Valoracion anÃ±adida";
+                        echo "Usuario aÃ±adido";
                     }
                     else {
                         //No exista el cliente
@@ -419,29 +615,32 @@ $app->post('/insertar-valoracion',function()use($app,$db){
 		} catch (PDOException $e) {
                   $app->response()->setStatus(404);
                   //Devolvemos el mensaje si es un error (desarrollo)
-                  //Si no hay resultados getmessage()(resultado vacio) devolvera
+                  //Si no hay resultados getmessage()(resultado vacio) devolverÂ¡ una cadena vacia
                   echo $e->getMessage();
     }
 });
 
+
      //Modifica valoracion
         
-        $app->put('/valoracion/:id',function($id)use($app,$db){
+        $app->put('/modificar-usuario/:id',function($id)use($app,$db){
             
             try{  
             
                 //Obtenemos el contenido de la peticion
 
                     $cuerpoPeticion = $app->request()->getBody();
-                    $valoracion = json_decode($cuerpoPeticion);
+                    $usuario = json_decode($cuerpoPeticion);
 
                 //Obetenemos los atributos del objeto cliente
 				
-		    $valoracion_usuario=$valoracion ->valoracion_usuario;
+		            $user=$usuario->username;
+					$pass=$usuario->password;
+					$mail=$usuario->email;
                                        
                 //Preparamos la consulta
                     
-                    $consulta = $db->prepare("update valoracion set valoracion_usuario='$valoracion_usuario' where id_pelicula=$id");
+                    $consulta = $db->prepare("update usuarios set username='$user', password='$pass', email='$mail' where id_usuario=$id");
                     
                 //Ejecutamos la consulta
                     
@@ -474,13 +673,13 @@ $app->post('/insertar-valoracion',function()use($app,$db){
 
      //Borrado de valoracion
     
-        $app->delete('/eliminar-valoracion/:id/:id_usuario',function($id, $id_usuario)use($app,$db){
+        $app->delete('/eliminar-suscripcion/:id_usuario/:id_evento',function($id_usuario, $id_evento)use($app,$db){
             
             try{
                 
                 //Preparamos la consulta
                 
-                    $consulta = $db->prepare("delete from valoracion where id_pelicula=$id and id_usuario=$id_usuario");
+                    $consulta = $db->prepare("delete from suscripciones where idUsuario=$id_usuario and idEvento=$id_evento");
                     
                 //Ejecutamos la consulta
                 

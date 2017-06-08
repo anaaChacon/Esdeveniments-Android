@@ -100,6 +100,7 @@ public class FragmentListEvents extends Fragment implements TareaRest.TareaRestL
 
                         adapterEventos = new AdapterEventos(getContext(), (ArrayList) listaEventos);
                         listEventos.setAdapter(adapterEventos);
+                        adapterEventos.notifyDataSetChanged();
                     }
                 }else{
                     Toast.makeText(getActivity(), getString(R.string.direction_not_found), Toast.LENGTH_LONG).show();

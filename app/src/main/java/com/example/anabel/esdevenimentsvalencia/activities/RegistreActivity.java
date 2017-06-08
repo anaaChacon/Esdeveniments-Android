@@ -14,8 +14,12 @@ import android.widget.Toast;
 import com.example.anabel.esdevenimentsvalencia.R;
 import com.example.anabel.esdevenimentsvalencia.Servidor.TareaRest;
 import com.example.anabel.esdevenimentsvalencia.Servidor.WebService;
+import com.example.anabel.esdevenimentsvalencia.global.Constants;
 import com.example.anabel.esdevenimentsvalencia.models.Usuarios;
 import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 
@@ -24,6 +28,7 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
     private Button registro;
     private EditText campoNombre, campoApellidos, campoEdad, campoEmail, campoUsuari, campoContrasenya;
     private Usuarios usuario;
+    private ArrayList<Usuarios> listaUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,22 +72,8 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
                     !campoEmail.getText().toString().isEmpty() || !campoEdad.getText().toString().isEmpty() ||
                     !campoUsuari.getText().toString().isEmpty() || !campoContrasenya.getText().toString().isEmpty()){
 
-                //Instancio el objeto compra
-                usuario = new Usuarios();
-
-                usuario.setNombre(campoNombre.getText().toString());
-                usuario.setApellidos(campoApellidos.getText().toString());
-                usuario.setEmail(campoEmail.getText().toString());
-                usuario.setEdad(Integer.parseInt(campoEdad.getText().toString()));
-                usuario.setUsername(campoUsuari.getText().toString());
-                usuario.setPassword(campoContrasenya.getText().toString());
-
-                //Creamos un objeto GSON
-                Gson gson = new Gson();
-                //Convertimos un objeto cliente en una cadena JSON
-                String parametroJson = gson.toJson(usuario);
-
-                TareaRest tarea = new TareaRest(this, WebService.CODIGO_INSERTAR_USUARIO,"POST", WebService.URL_INSERTAR_USUARIO, parametroJson, this);
+                // Se lanza la tarea
+                TareaRest tarea = new TareaRest(this, WebService.USER, "GET", WebService.URL_USER+campoUsuari.getText().toString(), null, this);
                 tarea.execute();
             }
             else{
@@ -101,13 +92,43 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
                 Toasty.success(this, getString(R.string.successRegistre), Toast.LENGTH_SHORT, true).show();
 
                 Intent i = new Intent(this, MainActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString(Constants.USERNAME, campoUsuari.getText().toString());
+                i.putExtras(bundle);
                 startActivity(i);
-
                 this.finish();
-
-            } else {
-                Toasty.error(this, getString(R.string.notRegistre), Toast.LENGTH_SHORT, true).show();
             }
+
+            if(codigoOperacion == 13){
+
+                listaUser = WebService.procesarListaUsuarios(respuestaJson);
+
+                if(listaUser == null) {
+                    //Instancio el objeto compra
+                    usuario = new Usuarios();
+
+                    usuario.setNombre(campoNombre.getText().toString());
+                    usuario.setApellidos(campoApellidos.getText().toString());
+                    usuario.setEmail(campoEmail.getText().toString());
+                    usuario.setEdad(Integer.parseInt(campoEdad.getText().toString()));
+                    usuario.setUsername(campoUsuari.getText().toString());
+                    usuario.setPassword(campoContrasenya.getText().toString());
+
+                    //Creamos un objeto GSON
+                    Gson gson = new Gson();
+                    //Convertimos un objeto cliente en una cadena JSON
+                    String parametroJson = gson.toJson(usuario);
+
+                    TareaRest tarea2 = new TareaRest(this, WebService.CODIGO_INSERTAR_USUARIO, "POST", WebService.URL_INSERTAR_USUARIO, parametroJson, this);
+                    tarea2.execute();
+                }else{
+                    Toasty.error(this, "El nombre de usuario ya existe.", Toast.LENGTH_SHORT, true).show();
+                }
+            }
+
+
+        } else {
+            Toasty.error(this, getString(R.string.notRegistre), Toast.LENGTH_SHORT, true).show();
         }
 
         }

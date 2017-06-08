@@ -53,7 +53,7 @@ public class TareaRest extends AsyncTask <Void, String, String> {
         // con el código HTTP de resultado y, en su caso, el objeto JSON de respuesta
         this.actividadOyente = actividadOyente;
         //Instanciamos el progress dialog
-        progressDialog = new ProgressDialog(contexto);
+        //progressDialog = new ProgressDialog(contexto);
     }
 
     //Este constructor nos permite configurar la tarea CON AUTENTICACIÓN
@@ -74,7 +74,7 @@ public class TareaRest extends AsyncTask <Void, String, String> {
         this.usuario = usuario;
         this.pass = pass;
         //Instanciamos el progress dialog
-        progressDialog = new ProgressDialog(contexto);
+        //progressDialog = new ProgressDialog(contexto);
     }
 
     //Gracias a esta interface podremos comunicarle a la actividad que nos ha invocado:
@@ -88,9 +88,9 @@ public class TareaRest extends AsyncTask <Void, String, String> {
     protected void onPreExecute() {
 
         //Lanzamos el diálogo de comienzo de la comunicación
-        progressDialog.setMessage(TareaRest.this.contexto.getString(R.string.loading));
+        /*progressDialog.setMessage(TareaRest.this.contexto.getString(R.string.loading));
         progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.show();
+        progressDialog.show();*/
     }
 
     // Esto se ejecutará en un hilo secundario después de onPreExecute
@@ -173,7 +173,7 @@ public class TareaRest extends AsyncTask <Void, String, String> {
     //Esto se ejecuta en el hilo principal y cuando el hilo secundario ha acabado su tarea
     protected void onPostExecute(String cuerpoRecibido) {
         // Cerramos el diálogo de progreso
-        progressDialog.dismiss();
+        //progressDialog.dismiss();
         //Llamamos a la actividad que se nos ha suscrito para devolverle el código http de respuesta
         //y, en su caso, el objeto JSON de respuesta
         actividadOyente.onTareaRestFinalizada(codigoOperacion, codigoRespuestaHttp, cuerpoRecibido);

@@ -90,6 +90,7 @@ public class FragmentTeInteresa extends Fragment implements TareaRest.TareaRestL
 
                         adapterSuscripciones = new AdapterSuscripciones(getContext(), (ArrayList) listaSuscripciones);
                         listaInteresa.setAdapter(adapterSuscripciones);
+                        adapterSuscripciones.notifyDataSetChanged();
                     }
                 }
             }

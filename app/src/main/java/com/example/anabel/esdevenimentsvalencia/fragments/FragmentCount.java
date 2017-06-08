@@ -1,5 +1,6 @@
 package com.example.anabel.esdevenimentsvalencia.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -89,9 +90,11 @@ public class FragmentCount extends Fragment implements View.OnClickListener, Tar
             tarea.execute();
         }
         if(view.getId() == R.id.singOff){
+            getActivity().setResult(Activity.RESULT_OK);
             getActivity().finish();
         }
     }
+
 
 
     @Override

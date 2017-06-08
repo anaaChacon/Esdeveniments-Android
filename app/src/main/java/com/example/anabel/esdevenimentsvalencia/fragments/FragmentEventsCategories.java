@@ -91,6 +91,7 @@ public class FragmentEventsCategories extends Fragment implements TareaRest.Tare
 
                         adapterCategorias = new AdapterCategoria(this, getActivity(), (ArrayList) listaCategorias);
                         gridCategories.setAdapter(adapterCategorias);
+                        adapterCategorias.notifyDataSetChanged();
 
                     }
                 }

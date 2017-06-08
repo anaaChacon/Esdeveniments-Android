@@ -1,5 +1,6 @@
 package com.example.anabel.esdevenimentsvalencia.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import com.example.anabel.esdevenimentsvalencia.global.Constants;
 public class CategoriesActivity extends AppCompatActivity {
 
     public static TextView etiquetaTitle;
+    private Intent i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +24,7 @@ public class CategoriesActivity extends AppCompatActivity {
 
         etiquetaTitle = (TextView)findViewById(R.id.titlePrincipal);
 
-        Intent i = getIntent();
+        i = getIntent();
         etiquetaTitle.setText(i.getStringExtra(Constants.TITLE));
 
         switch (i.getIntExtra(Constants.CODE, -1)){
@@ -34,8 +36,8 @@ public class CategoriesActivity extends AppCompatActivity {
                 break;
             case Constants.CODE_COMPTE:
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, FragmentCount.newInstance()).commitNow();
+
         }
-
-
     }
+
 }

@@ -1,5 +1,6 @@
 package com.example.anabel.esdevenimentsvalencia.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,22 +8,27 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.anabel.esdevenimentsvalencia.R;
 import com.example.anabel.esdevenimentsvalencia.global.Constants;
+
+import es.dmoral.toasty.Toasty;
 
 public class MainActivity extends AppCompatActivity implements ImageView.OnClickListener{
 
     private LinearLayout calendario, interesa, compte;
     private TextView titleEvents, titleInteresa, titleCompte;
     public static String username;
+    public Intent i;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent i = getIntent();
+        i = getIntent();
         username = i.getStringExtra(Constants.USERNAME);
 
         titleEvents = (TextView)findViewById(R.id.titleEvents);
@@ -39,11 +45,10 @@ public class MainActivity extends AppCompatActivity implements ImageView.OnClick
 
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//        finish();
-//    }
+    @Override
+    public void onBackPressed() {
+        Toasty.warning(this, "Si desea salir de la App, cierre sesión.", Toast.LENGTH_LONG, false).show();
+    }
 
     @Override
     public void onClick(View view) {
@@ -68,13 +73,20 @@ public class MainActivity extends AppCompatActivity implements ImageView.OnClick
                 bundle.putString(Constants.TITLE, titleCompte.getText().toString());
                 bundle.putInt(Constants.CODE, 3);
                 i.putExtras(bundle);
-                startActivity(i);
+                startActivityForResult(i, 1);
                 break;
             default:
                 break;
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                this.finish();
+            }
+        }
+    }
 }

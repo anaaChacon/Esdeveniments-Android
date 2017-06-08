@@ -3,7 +3,9 @@ package com.example.anabel.esdevenimentsvalencia.fragments;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -63,9 +65,14 @@ public class DialogFragmentConnection extends DialogFragment implements View.OnC
     public void onClick(View view) {
 
         if(view.getId() == R.id.connect){
-            dir = editIP.getText().toString() + ":" + editPuerto.getText().toString();
-            Toasty.info(getActivity(), "Conexión realizada", Toast.LENGTH_LONG, true).show();
-            dismiss();
+            if(editIP.getText().toString().isEmpty() || editPuerto.getText().toString().isEmpty()){
+                Toasty.info(getActivity(), getString(R.string.emptyFileds), Toast.LENGTH_LONG, true).show();
+            }else {
+                dir = editIP.getText().toString() + ":" + editPuerto.getText().toString();
+                Toasty.info(getActivity(), "Conexión realizada", Toast.LENGTH_LONG, true).show();
+                dismiss();
+            }
         }
     }
+
 }
