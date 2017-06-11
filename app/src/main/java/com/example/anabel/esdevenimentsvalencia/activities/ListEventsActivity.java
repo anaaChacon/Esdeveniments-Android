@@ -12,7 +12,6 @@ import com.example.anabel.esdevenimentsvalencia.global.Constants;
 
 public class ListEventsActivity extends AppCompatActivity {
 
-    private ImageView search;
     public static TextView titleCategory, titleEvent;
     private int position;
     @Override
@@ -22,7 +21,6 @@ public class ListEventsActivity extends AppCompatActivity {
 
         titleCategory = (TextView)findViewById(R.id.titleCat);
         titleEvent = (TextView)findViewById(R.id.titleCatEvent);
-        search = (ImageView)findViewById(R.id.search);
 
         Intent i = getIntent();
         titleCategory.setText(i.getStringExtra(Constants.TITLE));
